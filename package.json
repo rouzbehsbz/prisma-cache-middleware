@@ -1,0 +1,24 @@
+{
+  "name": "prisma-cache-middleware",
+  "version": "0.1.1",
+  "description": "Prisma middleware for caching database queries in redis.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": ["prisma", "cache", "middleware", "redis"],
+  "author": "rouzbehsbz",
+  "license": "MIT",
+  "dependencies": {
+    "ioredis": "^4.28.3"
+  },
+  "devDependencies": {
+    "@types/ioredis": "^4.28.7",
+    "typescript": "^4.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rouzbehsbz/repo-url.git"
+  }
+}

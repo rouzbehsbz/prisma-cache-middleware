@@ -35,13 +35,16 @@ export default prisma;
 | ------------- |-------------|
 |`redisOptions`|This is your redis server configuration (same as `ioredis` options)|
 |`instances`|Cache instances and the way you want to cache them|
+
 If you pass `{}` to `redisOptions` it will connect to your local running redis server with default port.
 otherwise you can specified your server settings, for example `{host: '127.0.0.1', port: 6379}`.
+
 ## Instances
 | Option|Description|Optional|Example
 | ------------- |-------------|-------------|-------------|
-|`model`|The Prisma database model name you define in your `schema.prisma`|`false`|`Users`
-|`action`|Query action name you want to cache for this model.|`false`|`findFirst`
-|`ttl`|The TTL or expire time of the cache in seconds|`true`|`10`
-|`keyPrefix`|Key prefix for caches of this instance|`true`|`myCache`
+|`model`|The Prisma database model name you define in your `schema.prisma`|`false`|`Users`|
+|`action`|Query action name you want to cache for this model.|`false`|`findFirst`|
+|`ttl`|The TTL or expire time of the cache in seconds|`true`|`10`|
+|`keyPrefix`|Key prefix for caches of this instance|`true`|`myCache`|
+
 You can defind cache instances as much as you want and pass array of instances to `instances` option.

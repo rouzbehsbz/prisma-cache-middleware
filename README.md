@@ -13,16 +13,16 @@ import prismaCacheMiddleware from 'prisma-cache-middleware';
 const prisma = new PrismaClient();
 
 prisma.$use(prismaCacheMiddleware({
-    redisOptions: {                    // Your redis server connection options (same is `ioredis` options)
-        host: 'localhost',             // Your redis host address
-        port: 6379                     // Your redis port number
+    redisOptions: {                    
+        host: 'localhost',             
+        port: 6379                     
     },
-    instances: [{                      // Here you can define your cache instances (as many as you want)
-        model: 'Users',                // First you must set your prisma model name
-        action: 'findFirst',           // Then set the action you want to cache like `create` or `findFirst`
-        ttl: 20,                       // Optional TTL (cache expire time) in seconds
-        keyPrefix: 'cache'             // Optional key prefix for cached keys in redis
-    },{                                // Next cache instance. you can define more
+    instances: [{                      
+        model: 'Users',                
+        action: 'findFirst',           
+        ttl: 20,                       
+        keyPrefix: 'myCache'             
+    },{                                
         model: 'Users',
         action: 'findMany',
     }]
@@ -30,3 +30,18 @@ prisma.$use(prismaCacheMiddleware({
 
 export default prisma;
 ```
+## Prisma cache middleware options
+| Option|Description|
+| ------------- |-------------|
+|`redisOptions`|This is your redis server configuration (same as `ioredis` options)|
+|`instances`|Cache instances and the way you want to cache them|
+If you pass `{}` to `redisOptions` it will connect to your local running redis server with default port.
+otherwise you can specified your server settings, for example `{host: '127.0.0.1', port: 6379}`.
+## Instances
+| Option|Description|Optional|Example
+| ------------- |-------------|-------------|-------------|
+|`model`|The Prisma database model name you define in your `schema.prisma`|`false`|`Users`
+|`action`|Query action name you want to cache for this model.|`false`|`findFirst`
+|`ttl`|The TTL or expire time of the cache in seconds|`true`|`10`
+|`keyPrefix`|Key prefix for caches of this instance|`true`|`myCache`
+You can defind cache instances as much as you want and pass array of instances to `instances` option.
